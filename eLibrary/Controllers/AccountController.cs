@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using eLibrary.Models;
+using eLibrary.DAL;
 
 namespace eLibrary.Controllers
 {
@@ -19,6 +20,8 @@ namespace eLibrary.Controllers
        [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            UnitOfWork work = new UnitOfWork();
+            work.BorrowedItemRepository.Get();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

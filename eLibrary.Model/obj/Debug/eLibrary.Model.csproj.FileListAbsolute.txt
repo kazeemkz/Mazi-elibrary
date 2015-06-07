@@ -62,6 +62,5 @@ C:\Project\E-Library\Mazi-elibrary\eLibrary.Model\bin\Debug\System.Web.Razor.xml
 C:\Project\E-Library\Mazi-elibrary\eLibrary.Model\bin\Debug\System.Web.WebPages.xml
 C:\Project\E-Library\Mazi-elibrary\eLibrary.Model\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Project\E-Library\Mazi-elibrary\eLibrary.Model\bin\Debug\System.Web.WebPages.Razor.xml
-C:\Project\E-Library\Mazi-elibrary\eLibrary.Model\obj\Debug\eLibrary.Model.csprojResolveAssemblyReference.cache
 C:\Project\E-Library\Mazi-elibrary\eLibrary.Model\obj\Debug\eLibrary.Model.dll
 C:\Project\E-Library\Mazi-elibrary\eLibrary.Model\obj\Debug\eLibrary.Model.pdb
