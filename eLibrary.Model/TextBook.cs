@@ -16,5 +16,6 @@ namespace eLibrary.Model
       public int CourseID { get; set; }
       public virtual Course Course {get;set ;}
       public byte[] FileData { get; set; }
+      //
     }
 }
