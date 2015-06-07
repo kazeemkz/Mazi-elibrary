@@ -37,15 +37,15 @@
             {
                 Roles.CreateRole("Student");
             }
-            if (!Roles.RoleExists("Staff"))
-            {
-                Roles.CreateRole("Staff");
-            }
+            //if (!Roles.RoleExists("Staff"))
+            //{
+            //    Roles.CreateRole("Staff");
+            //}
 
-            if (!Roles.RoleExists("NonTeaching-Staff"))
-            {
-                Roles.CreateRole("NonTeaching-Staff");
-            }
+            //if (!Roles.RoleExists("NonTeaching-Staff"))
+            //{
+            //    Roles.CreateRole("NonTeaching-Staff");
+            //}
 
             //if (!Roles.RoleExists("Teacher"))
             //{

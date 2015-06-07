@@ -17,7 +17,8 @@ namespace eLibrary.Controllers
     public class BorrowedItemController : Controller
     {
         UnitOfWork work = new UnitOfWork();
-        [DynamicAuthorize]
+      //  [DynamicAuthorize]
+        [Authorize]
         public ViewResult Index(string sortOrder, string currentFilter, string StudentStaffID, string PublicationYear, string ItemType, string searchString, string SubjectArea, string BookTitle, string AuthorName, int? page)
         {
             List<SelectListItem> theSubjectList = new List<SelectListItem>();
@@ -162,7 +163,8 @@ namespace eLibrary.Controllers
 
         //
         // GET: /BorrowedItem/Details/5
-        [DynamicAuthorize]
+      //  [DynamicAuthorize]
+        [Authorize]
         public ActionResult Details(int id)
         {
         BorrowedItem theBookLoggedAsBorrowed =    work.BorrowedItemRepository.GetByID(id);
