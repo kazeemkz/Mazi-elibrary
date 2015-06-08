@@ -32,9 +32,13 @@ namespace eLibrary.Controllers
             Column theCol = db.Columns.Include("Book").Where(a => a.ColumnID == Colid && a.RowID == Rodid).First();
             Row theRow = work.RowRepository.GetByID(Rodid);
 
+            Shelf theSelf = work.ShelfRepository.GetByID(theRow.ShelfID);
+
+            ViewBag.Self = theSelf.ShelfName;
+
 
             ViewBag.RowName = theRow.RowName;
-            ViewBag.Self = theRow.Self.ShelfName;
+          //  ViewBag.Self = theRow.Self.ShelfName;
             ViewBag.Column = theCol.ColumnName;
             // return View("Index2", theCol.Book);
             ViewBag.RowID = theRow.RowID;
@@ -277,9 +281,9 @@ namespace eLibrary.Controllers
             Book theBook = new Book();
 
             theBook.ColumnID = theCol.ColumnID;
-
+            Shelf theSelf = work.ShelfRepository.GetByID(theRow.ShelfID);
             ViewBag.RowName = theRow.RowName;
-            ViewBag.Self = theRow.Self.ShelfName;
+            ViewBag.Self = theSelf.ShelfName; //theRow.Self.ShelfName;
             ViewBag.Column = theCol.ColumnName;
 
 
@@ -342,16 +346,29 @@ namespace eLibrary.Controllers
         {
             string columnName = ColumnName;//model.Column.ColumnName;
 
+              eLContext db = new eLContext();
+              Shelf she = db.Shelves.Where(a => a.ShelfName == ShelfName).First();
+         //  Shelf she =   work.ShelfRepository.Get(a => a.ShelfName == ShelfName).First();
 
-            string rowName = RowName; //model.Column.Row.RowName;
-            string shelfName = ShelfName; //model.Column.Row.Self.ShelfName;
+           Row theRows = work.RowRepository.Get(a => a.RowName == RowName && a.ShelfID == she.ShelfID).First();
+
+            //  Row theRows = db.Rows.Where(a => a.ShelfID == she.ShelfID).First();
+
+              Column theC = db.Columns.Where(a => a.RowID == theRows.RowID && a.ColumnName == ColumnName).First();
+//Columns
+           // string rowName = RowName; //model.Column.Row.RowName;
+           // string shelfName = ShelfName; //model.Column.Row.Self.ShelfName;
             //    eLContext db = new eLContext();
-            Column theColumns = work.ColumnRepository.Get(a => a.ColumnName.Equals(columnName) && a.Row.RowName.Equals(rowName)).First();
-            Row theRows = work.RowRepository.Get(a => a.RowName.Equals(rowName) && a.RowID == theColumns.RowID).First();
+          //  Column theColumns = work.ColumnRepository.Get(a => a.ColumnName.Equals(columnName) && a.Row.RowName.Equals(rowName) ).First();
+          //  Row theRows = work.RowRepository.Get(a => a.RowName.Equals(rowName) && a.RowID == theColumns.RowID).First();
 
-            theColumns.Row = theRows;
-            model.Column = theColumns;
-            model.ColumnID = theColumns.ColumnID;
+           // theRows.Self = she;
+           // theColumns.Row = theRows;
+           // theRows.ShelfID = she.ShelfID;
+          //  theColumns.RowID = theRows.RowID;
+          //  model.Column = theColumns;
+         //   model.ColumnID = theColumns.ColumnID;
+            model.ColumnID = theC.ColumnID;
             model.DateCreated = DateTime.Now;
             try
             {
@@ -732,7 +749,11 @@ namespace eLibrary.Controllers
             Book theBook = work.BookRepository.GetByID(id);
 
 
+            Column col = work.ColumnRepository.GetByID(theBook.ColumnID);
 
+            Row r = work.RowRepository.GetByID(col.RowID);
+            col.Row = r;
+            theBook.Column = col;
             //  work.PhotoRepository.Delete()
             return View(theBook);
         }

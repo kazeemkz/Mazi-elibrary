@@ -113,6 +113,14 @@ namespace eLibrary.Controllers
         public ActionResult Delete(int id)
         {
          Column theColumn =   work.ColumnRepository.GetByID(id);
+
+         Row theRow = work.RowRepository.GetByID(theColumn.RowID);
+         Shelf theShelf = work.ShelfRepository.GetByID(theRow.ShelfID);
+
+         theRow.Self = theShelf;
+
+         theColumn.Row = theRow;
+
          return View(theColumn);
         }
 

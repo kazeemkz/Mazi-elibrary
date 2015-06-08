@@ -16,7 +16,7 @@ namespace eLibrary.Model
        [Display(Name = "Date paid")]
         public DateTime DatePaid { get; set; }
        [Display(Name = "Amount Paid")]
-        public double AmountPaid { get; set; }
+        public int AmountPaid { get; set; }
         
     }
 }

@@ -248,10 +248,20 @@ namespace eLibrary.Controllers
             try
             {
                 // TODO: Add update logic here
-                Book theBorrowedBook = work.BookRepository.GetByID(id);
-                theBorrowedBook.BookQuantity = theBorrowedBook.BookQuantity - 1;
+                Book theBorrowedBook = new Book();
+                theBorrowedBook = work.BookRepository.GetByID(id);
+                if (theBorrowedBook  == null)
+                {
 
-                work.BookRepository.Update(theBorrowedBook);
+                }
+                else
+                {
+                    
+                    theBorrowedBook.BookQuantity = theBorrowedBook.BookQuantity - 1;
+
+                    work.BookRepository.Update(theBorrowedBook);
+                }
+               
 
                 BorrowedItem theBookLoggedAsBorrowed = work.BorrowedItemRepository.GetByID(id2);
       
@@ -264,7 +274,7 @@ namespace eLibrary.Controllers
                 {
                     Finance theFi = new Finance();
 
-                    theFi.AmountPaid = days * 200;
+                    theFi.AmountPaid =  Convert.ToInt32( days) * 200;
                     theFi.DatePaid = DateTime.Now;
                     theFi.PaidBy = theBookLoggedAsBorrowed.UserID;
                   //  theFi.

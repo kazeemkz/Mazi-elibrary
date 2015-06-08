@@ -28,6 +28,12 @@ namespace eLibrary.Controllers
             eLContext db = new eLContext();
             Row theRow = work.RowRepository.GetByID(id);
 
+            Shelf theSelf = work.ShelfRepository.GetByID(theRow.ShelfID);
+
+            ViewBag.SelfName = theSelf.ShelfName;
+
+        //   Row theRow  = db.Rows.Include("Shelf").Where(a => a.RowID == id).First();
+            //Shelf 
             List<Column> theColumns = db.Columns.Include("Book").Where(a => a.RowID == id).ToList();
 
           //  List<Column> theColumn = work.ColumnRepository.Get(a => a.RowID == id).ToList();
